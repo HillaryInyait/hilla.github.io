@@ -49,3 +49,21 @@ function handleNoClick() {
 function handleYesClick() {
     window.location.href = "yes_page.html";
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const img = document.querySelector(".gif_container img");
+
+    function handleImageLoad() {
+        img.classList.remove("loaded");
+        setTimeout(() => {
+            img.classList.add("loaded");
+        }, 10); // Small delay to ensure the class is removed before re-adding
+    }
+
+    img.addEventListener("load", handleImageLoad);
+
+    // Trigger the load event manually if the image is already cached
+    if (img.complete) {
+        handleImageLoad();
+    }
+});
